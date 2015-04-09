@@ -3,4 +3,4 @@
 [![devDependency Status](https://david-dm.org/roccivic/color-module/dev-status.svg)](https://david-dm.org/roccivic/color-module#info=devDependencies)
 
 # color-module
-color-module
+Color management module for JavaScript. Supports RGBA, HSLA and CMYK, as string or object
