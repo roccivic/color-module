@@ -44,12 +44,19 @@ module.exports = function (grunt) {
     },
     jshint: {
       all: ['Gruntfile.js', 'lib/color-module.js', 'test/**/*.js']
+    },
+    uglify: {
+      main_target: {
+        files: {
+          'dist/color-module.min.js': ['lib/color-module.js']
+        }
+      }
     }
   });
 
   grunt.registerTask('default', [
     'jshint:all',
-    'karma:unit',
+    'karma:unit'
   ]);
 
   grunt.registerTask('test', [
@@ -57,6 +64,12 @@ module.exports = function (grunt) {
     'karma:unit',
     'coveralls:main_target',
     'david:all'
+  ]);
+
+  grunt.registerTask('build', [
+    'jshint:all',
+    'karma:unit',
+    'uglify:main_target'
   ]);
 
   grunt.registerTask('watch', [
