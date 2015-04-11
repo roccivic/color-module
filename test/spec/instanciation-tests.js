@@ -1,5 +1,5 @@
-describe("Instanciation", function () {
-    it("Instanciation tests", function() {
+describe("Instanciation:", function () {
+    it("defaults to black", function() {
         var color = new Color();
         expect(color.getRgb()).toEqual({r:0, g:0, b:0});
         expect(color.getRgba()).toEqual({r:0, g:0, b:0, a:1});

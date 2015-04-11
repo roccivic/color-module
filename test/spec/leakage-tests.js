@@ -6,17 +6,9 @@ describe("Leakage tests", function () {
         var rgba = 'rgba(125,125,125,0.8)';
         var color1 = new Color(rgba);
         var color2 = new Color(color1);
-        expect(
-            color2.getRgbaString()
-        ).toBe(
-            rgba
-        );
+        expect(color2.getRgbaString()).toBe(rgba);
         color1.setAlpha(0);
-        expect(
-            color2.getRgbaString()
-        ).toBe(
-            rgba
-        );
+        expect(color2.getRgbaString()).toBe(rgba);
     });
 
     it("Instanciate Color from a plain object", function () {
@@ -34,11 +26,7 @@ describe("Leakage tests", function () {
         };
         var color1 = new Color(rgba1);
         rgba1.r = 1;
-        expect(
-            color1.getRgba()
-        ).toEqual(
-            rgba2
-        );
+        expect(color1.getRgba()).toEqual(rgba2);
 
         var hsl1 = {
             h: 0.5,
@@ -52,11 +40,7 @@ describe("Leakage tests", function () {
         };
         color1 = new Color(hsl1);
         hsl1.h = 1;
-        expect(
-            color1.getHsl()
-        ).toEqual(
-            hsl2
-        );
+        expect(color1.getHsl()).toEqual(hsl2);
 
         var cmyk1 = {
             c: 0,
@@ -72,11 +56,7 @@ describe("Leakage tests", function () {
         };
         color1 = new Color(cmyk1);
         cmyk1.m = 1;
-        expect(
-            color1.getCmyk()
-        ).toEqual(
-            cmyk2
-        );
+        expect(color1.getCmyk()).toEqual(cmyk2);
     });
 
 
@@ -91,11 +71,7 @@ describe("Leakage tests", function () {
         var rgba2 = color1.getRgba();
         rgba2.r = 1;
         rgba2.a = 0;
-        expect(
-            color1.getRgba()
-        ).toEqual(
-            rgba1
-        );
+        expect(color1.getRgba()).toEqual(rgba1);
         var rgb1 = {
             r: 0.5,
             g: 0.5,
@@ -104,11 +80,7 @@ describe("Leakage tests", function () {
         color1 = new Color(rgb1);
         var rgb2 = color1.getRgb();
         rgba2.r = 1;
-        expect(
-            color1.getRgb()
-        ).toEqual(
-            rgb1
-        );
+        expect(color1.getRgb()).toEqual(rgb1);
 
         var hsla1 = {
             h: 0.5,
@@ -120,11 +92,7 @@ describe("Leakage tests", function () {
         var hsla2 = color1.getHsla();
         hsla2.s = 1;
         hsla2.a = 0;
-        expect(
-            color1.getHsla()
-        ).toEqual(
-            hsla1
-        );
+        expect(color1.getHsla()).toEqual(hsla1);
         var hsl1 = {
             h: 0.5,
             s: 0.5,
@@ -133,10 +101,6 @@ describe("Leakage tests", function () {
         color1 = new Color(hsl1);
         var hsl2 = color1.getHsl();
         hsla2.s = 1;
-        expect(
-            color1.getHsl()
-        ).toEqual(
-            hsl1
-        );
+        expect(color1.getHsl()).toEqual(hsl1);
     });
 });
