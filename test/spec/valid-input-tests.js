@@ -3,6 +3,10 @@ describe("Malformed, valid, input", function () {
 		var color = new Color('  #123456  ');
 	    expect(color.getHexString()).toBe('#123456');
 	});
+	it("Set HEXA string with whitespace", function () {
+		var color = new Color('  #1234560f  ');
+	    expect(color.getHexaString()).toBe('#1234560f');
+	});
 	it("Set RGB string with extra whitespace", function () {
 		var color = new Color('rgb(12,34,56)  ');
 	    expect(color.getRgbString()).toBe('rgb(12,34,56)');
