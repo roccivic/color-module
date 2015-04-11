@@ -1,4 +1,5 @@
 describe("Basic, valid input:", function () {
+    "use strict";
     it("Set RGB object", function () {
         var color = new Color({
             r: 12 / 255,

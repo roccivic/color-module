@@ -1,5 +1,6 @@
 describe("Leakage tests", function () {
-    Object.prototype.method_name = function() {
+    "use strict";
+    Object.prototype.dummy = function() {
         // Dummy extension of the Object class
     };
     it("Instanciate Color from another Color object", function () {
@@ -79,7 +80,7 @@ describe("Leakage tests", function () {
         };
         color1 = new Color(rgb1);
         var rgb2 = color1.getRgb();
-        rgba2.r = 1;
+        rgb2.r = 1;
         expect(color1.getRgb()).toEqual(rgb1);
 
         var hsla1 = {
@@ -100,7 +101,7 @@ describe("Leakage tests", function () {
         };
         color1 = new Color(hsl1);
         var hsl2 = color1.getHsl();
-        hsla2.s = 1;
+        hsl2.s = 1;
         expect(color1.getHsl()).toEqual(hsl1);
     });
 });

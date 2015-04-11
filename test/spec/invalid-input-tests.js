@@ -1,4 +1,5 @@
 describe("Malformed, invalid, input", function () {
+    "use strict";
     it("Setting invalid color shouldn't corrupt previous value", function () {
     	var color = new Color('#123456');
 

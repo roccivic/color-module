@@ -1,4 +1,5 @@
 describe("Alpha test:", function () {
+    "use strict";
     describe("getAlpha:", function () {
         it("defaults to 1", function () {
             var color = new Color();

@@ -1,4 +1,5 @@
 describe("Instanciation:", function () {
+    "use strict";
     it("defaults to black", function() {
         var color = new Color();
         expect(color.getRgb()).toEqual({r:0, g:0, b:0});

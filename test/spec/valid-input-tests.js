@@ -1,4 +1,5 @@
 describe("Malformed, valid, input", function () {
+    "use strict";
     it("Set HEX string with whitespace", function () {
         var color = new Color('  #123456  ');
         expect(color.getHexString()).toBe('#123456');
