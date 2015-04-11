@@ -37,6 +37,9 @@ module.exports = function (grunt) {
       }
     },
     jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
       all: ['Gruntfile.js', 'lib/color-module.js', 'test/**/*.js']
     },
     uglify: {
