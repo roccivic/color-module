@@ -2,7 +2,10 @@ describe("Malformed, invalid, input", function () {
     it("Setting invalid color shouldn't corrupt previous value", function () {
     	var color = new Color('#123456');
 
-    	color.setColor('foobar');
+        color.setColor('foobar');
+        expect(color.getHexString()).toBe('#123456');
+
+        color.setColor('#fffff');
         expect(color.getHexString()).toBe('#123456');
 
     	color.setColor({ h: 0.2, s: 0.3, v: 0.4 });
