@@ -123,4 +123,12 @@ describe("Malformed, valid, input", function () {
 		color = new Color('hsla(10,34%,56%,1.5)');
 	    expect(color.getHslaString()).toBe('hsla(10,34%,56%,1)');
 	});
+	it("Set HSL object with negative hue", function () {
+		var color = new Color({
+			h: -1.3,
+			s: 1,
+			l: 0.34
+		});
+		expect(color.getHsl()).toEqual({ h:0.7, s:1, l:0.34 });
+	});
 });
