@@ -26,6 +26,9 @@ describe("Malformed, invalid, input", function () {
         color.setColor('rgb(%,%,%,1)');
         expect(color.getHexString()).toBe('#123456');
 
+        color.setColor('rgba(10,10,10,10,10)');
+        expect(color.getHexString()).toBe('#123456');
+
         color.setColor('hsl(');
         expect(color.getHexString()).toBe('#123456');
 
@@ -33,6 +36,9 @@ describe("Malformed, invalid, input", function () {
         expect(color.getHexString()).toBe('#123456');
 
         color.setColor('hsl(1,2,3)');
+        expect(color.getHexString()).toBe('#123456');
+
+        color.setColor('device-cmyk(1,2,3,4,5,6)');
         expect(color.getHexString()).toBe('#123456');
     });
 });
