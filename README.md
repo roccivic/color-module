@@ -222,3 +222,8 @@ color.setAlpha(color.getAlpha() - 0.1); // lower alpha by 10%
 // returns
 0.4
 ```
+The `setAlpha()` method is chainable.
+```javascript
+var color = new Color();
+color.setAlpha(0.5).getRgbaString();
+```
