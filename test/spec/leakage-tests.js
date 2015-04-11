@@ -1,4 +1,7 @@
 describe("Leakage tests", function () {
+    Object.prototype.method_name = function() {
+        // Dummy extension of the Object class
+    };
     it("Instanciate Color from another Color object", function () {
         var rgba = 'rgba(125,125,125,0.8)';
         var color1 = new Color(rgba);
