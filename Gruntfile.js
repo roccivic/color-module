@@ -12,15 +12,9 @@ module.exports = function (grunt) {
   grunt.initConfig({
     coveralls: {
       options: {
-        // LCOV coverage file relevant to every target 
-        //src: 'test-results/lcov.info',
-   
-        // When true, grunt-coveralls will only print a warning rather than 
-        // an error, to prevent CI builds from failing unnecessarily (e.g. if 
-        // coveralls.io is down). Optional, defaults to false. 
         force: false
       },
-      main_target: {
+      main: {
         src: "test-results/lcov.info"
       }
     },
@@ -46,7 +40,7 @@ module.exports = function (grunt) {
       all: ['Gruntfile.js', 'lib/color-module.js', 'test/**/*.js']
     },
     uglify: {
-      main_target: {
+      main: {
         files: {
           'dist/color-module.min.js': ['lib/color-module.js']
         }
@@ -61,18 +55,24 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'jshint:all',
+    'karma:unit'
+  ]);
+
+  grunt.registerTask('watch', [
+    'jshint:all',
+    'karma:watch'
+  ]);
+
+  grunt.registerTask('ci', [
+    'jshint:all',
     'karma:unit',
-    'coveralls:main_target',
+    'coveralls:main',
     'david:all'
   ]);
 
   grunt.registerTask('build', [
     'jshint:all',
     'karma:unit',
-    'uglify:main_target'
-  ]);
-
-  grunt.registerTask('watch', [
-    'karma:watch'
+    'uglify:main'
   ]);
 };
