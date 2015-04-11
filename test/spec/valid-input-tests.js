@@ -117,4 +117,10 @@ describe("Malformed, valid, input", function () {
 		});
 		expect(color.getHsla()).toEqual({ h:0, s:1, l:0.34, a:0.45 });
 	});
+	it("Bad alpha", function () {
+		var color = new Color('rgba(12,34,56,1.5)');
+	    expect(color.getRgbaString()).toBe('rgba(12,34,56,1)');
+		color = new Color('hsla(10,34%,56%,1.5)');
+	    expect(color.getHslaString()).toBe('hsla(10,34%,56%,1)');
+	});
 });
