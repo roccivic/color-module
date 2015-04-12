@@ -10,15 +10,45 @@ module.exports = function (grunt) {
 
   // sauce labs launchers
   var customLaunchers = {
-    ie: {
+    ie8: {
+      base: 'SauceLabs',
+      browserName: 'internet explorer',
+      version: '8'
+    },
+    ie9: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
       version: '9'
+    },
+    ie10: {
+      base: 'SauceLabs',
+      browserName: 'internet explorer',
+      version: '10'
+    },
+    ie11: {
+      base: 'SauceLabs',
+      browserName: 'internet explorer',
+      version: '11'
     },
     firefox: {
       base: 'SauceLabs',
       browserName: 'firefox',
       version: '30'
+    },
+    chrome: {
+      base: 'SauceLabs',
+      browserName: 'chrome',
+      version: '40'
+    },
+    opera: {
+      base: 'SauceLabs',
+      browserName: 'opera',
+      version: '11'
+    },
+    safari: {
+      base: 'SauceLabs',
+      browserName: 'safari',
+      version: '6'
     }
   };
 
@@ -42,13 +72,13 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: false
       },
-      ci: {
+      sauce: {
         configFile: 'test/karma.conf.js',
         singleRun: true,
         sauceLabs: {
             testName: 'Color Module Tests'
         },
-        reporters: ['progress','coverage','saucelabs'],
+        reporters: ['progress','saucelabs'],
         customLaunchers: customLaunchers,
         browsers: Object.keys(customLaunchers)
       }
@@ -112,9 +142,15 @@ module.exports = function (grunt) {
   grunt.registerTask('ci', [
     'concat:dist',
     'jshint:all',
-    'karma:ci',
+    'karma:unit',
     'coveralls:main',
     'david:all'
+  ]);
+
+  grunt.registerTask('sauce', [
+    'concat:dist',
+    'jshint:all',
+    'karma:sauce'
   ]);
 
   grunt.registerTask('build', [
