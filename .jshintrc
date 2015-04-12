@@ -14,15 +14,39 @@
   "regexp": true,
   "undef": true,
   "unused": true,
-  "strict": true,
+  "strict": false,
   "trailing": true,
   "smarttabs": true,
-  "exported": ["Color"],
+  "exported": [
+    "Color",
+    "round",
+    "clone",
+    "haveFields",
+    "replaceCallback",
+    "rgb2hex",
+    "hex2rgb",
+    "hexa2rgb",
+    "rgb2hsl",
+    "hsl2rgb",
+    "rgb2cmyk",
+    "cmyk2rgb"
+  ],
   "globals": {
-    "Color": true,
     "describe": false,
     "it": false,
     "xit": false,
-    "expect": false
+    "expect": false,
+    "Color": true,
+    "round":true,
+    "clone":true,
+    "haveFields": true,
+    "replaceCallback": true,
+    "rgb2hex": true,
+    "hex2rgb": true,
+    "hexa2rgb": true,
+    "rgb2hsl": true,
+    "hsl2rgb": true,
+    "rgb2cmyk": true,
+    "cmyk2rgb": true
   }
 }

@@ -18,7 +18,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/color-module.js',
+      'dist/color-module.js',
       'test/**/*.js'
     ],
 
@@ -54,7 +54,7 @@ module.exports = function(config) {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'lib/color-module.js': ['coverage']
+      'dist/color-module.js': ['coverage']
     },
 
     //use cobertura coverage report for jenkins integration

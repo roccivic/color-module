@@ -40,33 +40,47 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['Gruntfile.js', 'lib/color-module.js', 'test/**/*.js']
+      all: ['Gruntfile.js', 'lib/*.js', 'test/**/*.js']
     },
     uglify: {
       main: {
         files: {
-          'dist/color-module.min.js': ['lib/color-module.js']
+          'dist/color-module.min.js': ['dist/color-module.js']
+        }
+      }
+    },
+    concat: {
+      dist: {
+        src: ['lib/util.js','lib/convert.js','lib/color-module.js'],
+        dest: 'dist/color-module.js',
+        options: {
+          banner: ";var Color = (function(Math){\n'use strict';",
+          footer: "\nreturn Color;}(Math));"
         }
       }
     }
   });
 
   grunt.registerTask('default', [
+    'concat:dist',
     'jshint:all',
     'karma:unit'
   ]);
 
   grunt.registerTask('test', [
+    'concat:dist',
     'jshint:all',
     'karma:unit'
   ]);
 
   grunt.registerTask('watch', [
+    'concat:dist',
     'jshint:all',
     'karma:watch'
   ]);
 
   grunt.registerTask('ci', [
+    'concat:dist',
     'jshint:all',
     'karma:unit',
     'coveralls:main',
@@ -74,6 +88,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'concat:dist',
     'jshint:all',
     'karma:unit',
     'uglify:main'
