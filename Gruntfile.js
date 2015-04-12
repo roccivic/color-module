@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         },
         reporters: ['progress','coverage','saucelabs'],
         customLaunchers: customLaunchers,
-        browsers: Object.keys(customLaunchers)
+        browsers: Object.keys(customLaunchers).push('PhantomJS')
       }
     },
     david: {
