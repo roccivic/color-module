@@ -3,7 +3,6 @@
 [![devDependency Status Badge](https://david-dm.org/roccivic/color-module/dev-status.svg)](https://david-dm.org/roccivic/color-module#info=devDependencies)
 [![Code Climate Badge](https://codeclimate.com/github/roccivic/color-module/badges/gpa.svg)](https://codeclimate.com/github/roccivic/color-module)
 [![MIT License Badge](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/roccivic/color-module/blob/master/LICENCE.txt)
-[![Sauce Test Status](https://saucelabs.com/buildstatus/roccivic)](https://saucelabs.com/u/roccivic)
 
 # color-module
 Color management module for JavaScript.
