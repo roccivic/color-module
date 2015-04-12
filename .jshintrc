@@ -29,7 +29,8 @@
     "rgb2hsl",
     "hsl2rgb",
     "rgb2cmyk",
-    "cmyk2rgb"
+    "cmyk2rgb",
+    "parse"
   ],
   "globals": {
     "describe": false,
@@ -47,6 +48,7 @@
     "rgb2hsl": true,
     "hsl2rgb": true,
     "rgb2cmyk": true,
-    "cmyk2rgb": true
+    "cmyk2rgb": true,
+    "parse": true
   }
 }

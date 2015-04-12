@@ -51,7 +51,12 @@ module.exports = function (grunt) {
     },
     concat: {
       dist: {
-        src: ['lib/util.js','lib/convert.js','lib/color-module.js'],
+        src: [
+          'lib/util.js',
+          'lib/convert.js',
+          'lib/parse.js',
+          'lib/color-module.js'
+        ],
         dest: 'dist/color-module.js',
         options: {
           banner: ";var Color = (function(Math){\n'use strict';",
