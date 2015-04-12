@@ -10,12 +10,12 @@ module.exports = function (grunt) {
 
   // sauce labs launchers
   var customLaunchers = {
-    sl_ie: {
+    ie: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
       version: '8'
     },
-    sl_firefox: {
+    firefox: {
       base: 'SauceLabs',
       browserName: 'firefox',
       version: '30'
