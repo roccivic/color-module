@@ -10,55 +10,15 @@ module.exports = function (grunt) {
 
   // sauce labs launchers
   var customLaunchers = {
-    ie8: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '8'
-    },
-    ie9: {
+    ie: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
       version: '9'
-    },
-    ie10: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '10'
-    },
-    ie11: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '11'
     },
     firefox: {
       base: 'SauceLabs',
       browserName: 'firefox',
       version: '30'
-    },
-    chrome: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: '40'
-    },
-    opera: {
-      base: 'SauceLabs',
-      browserName: 'opera',
-      version: '11'
-    },
-    safari: {
-      base: 'SauceLabs',
-      browserName: 'safari',
-      version: '6'
-    },
-    android: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      version: '4.4'
-    },
-    iphone: {
-      base: 'SauceLabs',
-      browserName: 'iphone',
-      version: '8.0'
     }
   };
 
