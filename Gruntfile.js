@@ -49,6 +49,16 @@ module.exports = function (grunt) {
       base: 'SauceLabs',
       browserName: 'safari',
       version: '6'
+    },
+    android: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      version: '4.4'
+    },
+    iphone: {
+      base: 'SauceLabs',
+      browserName: 'iphone',
+      version: '8.0'
     }
   };
 
