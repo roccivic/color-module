@@ -165,7 +165,7 @@ describe("Malformed, valid, input", function () {
         expect(color.getHslaString()).toBe('hsla(12,100%,56%,0.5)');
     });
 
-    xit("Set HSLA string with overflown channels", function () {
+    it("Set HSLA string with overflown channels", function () {
         var color = new Color('hsla(12,34%,555%,.5)');
         expect(color.getHslaString()).toBe('hsla(12,34%,100%,0.5)');
     });
@@ -178,7 +178,7 @@ describe("Malformed, valid, input", function () {
         expect(color.getHslString()).toBe('hsl(12,100%,56%)');
     });
 
-    xit("Set HSL string with overflown channels", function () {
+    it("Set HSL string with overflown channels", function () {
         var color = new Color('hsl(12,34%,555%)');
         expect(color.getHslString()).toBe('hsl(12,34%,100%)');
     });
