@@ -4,6 +4,9 @@
 [![Code Climate Badge](https://codeclimate.com/github/roccivic/color-module/badges/gpa.svg)](https://codeclimate.com/github/roccivic/color-module)
 [![MIT License Badge](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/roccivic/color-module/blob/master/LICENCE.txt)
 
+[![Sauce Test Status](https://saucelabs.com/buildstatus/roccivic)](https://saucelabs.com/u/roccivic)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/roccivic.svg)](https://saucelabs.com/u/roccivic)
+
 # color-module
 Color management module for JavaScript.
 * Supports RGBA, HSLA and CMYK, as string or object.
