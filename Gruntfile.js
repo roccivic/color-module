@@ -8,6 +8,20 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  // sauce labs launchers
+  var customLaunchers = {
+    sl_ie: {
+      base: 'SauceLabs',
+      browserName: 'internet explorer',
+      version: '8'
+    },
+    sl_ie: {
+      base: 'SauceLabs',
+      browserName: 'firefox',
+      version: '30'
+    }
+  };
+
   // Define the configuration for all the tasks
   grunt.initConfig({
     coveralls: {
@@ -27,6 +41,16 @@ module.exports = function (grunt) {
       watch: {
         configFile: 'test/karma.conf.js',
         singleRun: false
+      },
+      ci: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true,
+        sauceLabs: {
+            testName: 'Color Module Tests'
+        },
+        reporters: ['progress','coverage','saucelabs'],
+        customLaunchers: customLaunchers,
+        browsers: Object.keys(customLaunchers)
       }
     },
     david: {
@@ -88,7 +112,7 @@ module.exports = function (grunt) {
   grunt.registerTask('ci', [
     'concat:dist',
     'jshint:all',
-    'karma:unit',
+    'karma:ci',
     'coveralls:main',
     'david:all'
   ]);
