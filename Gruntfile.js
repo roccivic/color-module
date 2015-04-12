@@ -15,7 +15,7 @@ module.exports = function (grunt) {
       browserName: 'internet explorer',
       version: '8'
     },
-    sl_ie: {
+    sl_firefox: {
       base: 'SauceLabs',
       browserName: 'firefox',
       version: '30'
