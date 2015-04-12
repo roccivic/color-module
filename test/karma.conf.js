@@ -1,10 +1,13 @@
-// Karma configuration
-// http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2014-08-23 using
-// generator-karma 0.8.3
+var fs = require('fs');
 
 module.exports = function(config) {
   'use strict';
+
+  // Use ENV vars on Travis and sauce.json locally to get credentials
+  if (fs.existsSync('./sauce.json')) {
+    process.env.SAUCE_USERNAME = require('../sauce').username;
+    process.env.SAUCE_ACCESS_KEY = require('../sauce').accessKey;
+  }
 
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
