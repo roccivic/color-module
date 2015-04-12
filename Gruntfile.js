@@ -55,6 +55,7 @@ module.exports = function (grunt) {
           'lib/util.js',
           'lib/convert.js',
           'lib/parse.js',
+          'lib/format.js',
           'lib/color-module.js'
         ],
         dest: 'dist/color-module.js',
