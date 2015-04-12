@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     ie: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
-      version: '8'
+      version: '9'
     },
     firefox: {
       base: 'SauceLabs',
