@@ -117,7 +117,7 @@ module.exports = function (grunt) {
     uglify: {
       main: {
         files: {
-          'dist/color-module.min.js': ['dist/color-module.js']
+          'dist/color-module.min.js': ['dist/color-module.temp.js']
         }
       }
     },
@@ -136,29 +136,52 @@ module.exports = function (grunt) {
           footer: "\nreturn Color;}(Math));"
         }
       }
+    },
+    replace: {
+      all: {
+        src: ['dist/color-module.js'],
+        dest: 'dist/color-module.temp.js',
+        replacements: [{
+          from: '.hsla',
+          to: '.h'
+        }, {
+          from: '.rgba',
+          to: '.r'
+        }, {
+          from: 'hsla:',
+          to: 'h:'
+        }, {
+          from: 'rgba:',
+          to: 'r:'
+        }]
+      }
     }
   });
 
   grunt.registerTask('default', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:unit'
   ]);
 
   grunt.registerTask('test', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:unit'
   ]);
 
   grunt.registerTask('watch', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:watch'
   ]);
 
   grunt.registerTask('ci', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:unit',
     'coveralls:main',
@@ -167,6 +190,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('sauce', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:sauceIe8',
     'karma:sauceIe9',
@@ -178,6 +202,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'concat:dist',
+    'replace:all',
     'jshint:all',
     'karma:unit',
     'uglify:main'
