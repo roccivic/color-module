@@ -8,20 +8,6 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // sauce labs launchers
-  var customLaunchers = {
-    ie: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '9'
-    },
-    firefox: {
-      base: 'SauceLabs',
-      browserName: 'firefox',
-      version: '30'
-    }
-  };
-
   // Define the configuration for all the tasks
   grunt.initConfig({
     coveralls: {
@@ -34,23 +20,85 @@ module.exports = function (grunt) {
     },
     // Test settings
     karma: {
-      unit: {
+      options: {
         configFile: 'test/karma.conf.js',
         singleRun: true
       },
+      unit: {},
       watch: {
-        configFile: 'test/karma.conf.js',
         singleRun: false
       },
-      sauce: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true,
-        sauceLabs: {
-            testName: 'Color Module Tests'
-        },
+      sauceIe8: {
+        sauceLabs: { testName: 'Color Module Tests' },
         reporters: ['progress','saucelabs'],
-        customLaunchers: customLaunchers,
-        browsers: Object.keys(customLaunchers)
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            version: '8'
+          }
+        },
+        browsers: ['custom']
+      },
+      sauceIe9: {
+        sauceLabs: { testName: 'Color Module Tests' },
+        reporters: ['progress','saucelabs'],
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            version: '9'
+          }
+        },
+        browsers: ['custom']
+      },
+      sauceIe10: {
+        sauceLabs: { testName: 'Color Module Tests' },
+        reporters: ['progress','saucelabs'],
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            version: '10'
+          }
+        },
+        browsers: ['custom']
+      },
+      sauceIe11: {
+        sauceLabs: { testName: 'Color Module Tests' },
+        reporters: ['progress','saucelabs'],
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            version: '11'
+          }
+        },
+        browsers: ['custom']
+      },
+      sauceFirefox: {
+        sauceLabs: { testName: 'Color Module Tests' },
+        reporters: ['progress','saucelabs'],
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'firefox',
+            version: '30'
+          }
+        },
+        browsers: ['custom']
+      },
+      sauceChrome: {
+        sauceLabs: { testName: 'Color Module Tests' },
+        reporters: ['progress','saucelabs'],
+        customLaunchers: {
+          custom: {
+            base: 'SauceLabs',
+            browserName: 'chrome',
+            version: '40'
+          }
+        },
+        browsers: ['custom']
       }
     },
     david: {
@@ -120,7 +168,12 @@ module.exports = function (grunt) {
   grunt.registerTask('sauce', [
     'concat:dist',
     'jshint:all',
-    'karma:sauce'
+    'karma:sauceIe8',
+    'karma:sauceIe9',
+    'karma:sauceIe10',
+    'karma:sauceIe11',
+    'karma:sauceFirefox',
+    'karma:sauceChrome'
   ]);
 
   grunt.registerTask('build', [
