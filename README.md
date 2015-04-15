@@ -220,6 +220,7 @@ color.getAlpha();
 ```javascript
 var color = new Color({ h: 0.54, s: 0.15, l: 0.33 a: 0.5 });
 color.setAlpha(color.getAlpha() - 0.1); // lower alpha by 10%
+color.getAlpha();
 // returns
 0.4
 ```
