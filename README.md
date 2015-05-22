@@ -20,8 +20,10 @@ cd color-module-master
 ```
 
 ### Install dependecies
+* nodejs
+then:
 ```
-npm install -g grunt-cli
+npm install -g grunt-cli bower
 npm install
 ```
 
