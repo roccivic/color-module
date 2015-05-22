@@ -19,8 +19,9 @@ unzip master.zip
 cd color-module-master
 ```
 
-### Install dependecies
+### Install dependencies
 * nodejs
+
 then:
 ```
 npm install -g grunt-cli bower
