@@ -24,7 +24,7 @@ cd color-module-master
 
 then:
 ```
-npm install -g grunt-cli bower
+npm install -g grunt-cli
 npm install
 ```
 
