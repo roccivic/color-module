@@ -1,6 +1,6 @@
 {
   "name": "color-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Color management module for JavaScript. Supports RGBA, HSLA and CMYK, as string or object.",
   "main": "lib/color-module.js",
   "repository": {

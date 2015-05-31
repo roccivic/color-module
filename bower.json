@@ -1,0 +1,33 @@
+{
+  "name": "color-module",
+  "version": "1.0.1",
+  "homepage": "https://github.com/roccivic/color-module",
+  "authors": [
+    "Rouslan Placella <rouslan@placella.com>"
+  ],
+  "description": "Color management module for JavaScript. Supports RGBA, HSLA and CMYK, as string or object.",
+  "main": "dist/color-module.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "color",
+    "convert",
+    "rgb",
+    "rgba",
+    "hex",
+    "hsl",
+    "hsla",
+    "cmyk",
+    "css",
+    "css3"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
