@@ -132,7 +132,7 @@ module.exports = function (grunt) {
         ],
         dest: 'dist/color-module.js',
         options: {
-          banner: "var Color = (function(Math){\n'use strict'\n\n",
+          banner: "var Color = (function(Math){\n'use strict';\n\n",
           footer: "\n\nreturn Color;\n\n}(Math));"
         }
       }

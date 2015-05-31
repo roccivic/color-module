@@ -1,10 +1,21 @@
 var Color = (function(Math){
-'use strict'
+'use strict';
 
-// Shorthand
+/**
+ * Local function reference
+ */
 var round = Math.round;
 
-// One level deep copy
+/**
+ * One level deep copy
+ * @function
+ * @param {Object} obj - An object to be cloned
+ * @param {Object} callback - An optional callback function to be exectuted on each value
+ * @returns {Object}
+ * @example
+ * // returns {r:1, g:2, b:3}
+ * clone({r:'1.1', g:'2.2', b:3 }, parseInt);
+ */
 function clone(obj, callback) {
     var i, cloned = {};
     for (i in obj) {
@@ -19,25 +30,52 @@ function clone(obj, callback) {
     return cloned;
 }
 
-// Used to expand shorthand hex strings
+/**
+ * Used to expand shorthand hex strings
+ * @function
+ * @param {string} match - A match from the replace method
+ * @returns {string}
+ * @example
+ * // returns "aa"
+ * replaceCallback("a")
+ */
 function replaceCallback(match) {
     return match + match;
 }
 
-// Channel validity checker
+/**
+ * Used to check the validity of color channels
+ * @function
+ * @param {Object} value - The object to check
+ * @param {string} fields - A string of channels to check. E.g: 'rgb'
+ * @returns {bool}
+ * @example
+ * // returns true
+ * haveFields({r:1, g:2, b:3}, 'rgb')
+ */
 function haveFields(value, fields) {
     var i, temp, arr = fields.split('');
     for (i in arr) {
         if (arr.hasOwnProperty(i)) {
             temp = parseFloat(value[fields[i]]);
             if (isNaN(temp) || temp < 0 || temp > 1) {
-                return 0;
+                return false;
             }
         }
     }
-    return 1;
+    return true;
 }
-// converters
+// Color converters
+
+/**
+ * Converts an RGB color object to a HEXA string
+ * @function
+ * @param {Object} input
+ * @returns {string}
+ * @example
+ * // returns '#ffffffff'
+ * rgb2hexa({r:1, g:1, b:1, a:1})
+ */
 function rgb2hexa(input) {
     var value, byte, retval = '', i=0;
     for (;i<4;i++) {
@@ -50,6 +88,16 @@ function rgb2hexa(input) {
     }
     return '#' + retval;
 }
+
+/**
+ * Converts a HEXA string to an RGB color object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns {r:1, g:1, b:1, a:1}
+ * hexa2rgb('#ffffffff')
+ */
 function hexa2rgb(value) {
     var i=0, retval = {};
     for (;i<4;i++) {
@@ -62,6 +110,16 @@ function hexa2rgb(value) {
         a: retval[3]
     };
 }
+
+/**
+ * Converts an RGB color object to an HSL color object
+ * @function
+ * @param {Object} value
+ * @returns {Object}
+ * @example
+ * // returns {h:0, s:0, l:0, a:1}
+ * rgb2hsl({r:0, g:0, b:0, a:1})
+ */
 function rgb2hsl(value) {
     var r = value.r,
     g = value.g,
@@ -90,6 +148,16 @@ function rgb2hsl(value) {
         a: value.a
     };
 }
+
+/**
+ * Converts an HSL color object to an RGB color object
+ * @function
+ * @param {Object} value
+ * @returns {Object}
+ * @example
+ * // returns {r:0, g:0, b:0, a:1}
+ * rgb2hsl({h:0, s:0, l:0, a:1})
+ */
 function hsl2rgb(value) {
     var r, g, b;
     if (value.s === 0) {
@@ -131,6 +199,16 @@ function hsl2rgb(value) {
         a: value.a
     };
 }
+
+/**
+ * Converts an RGB color object to a CMYK color object
+ * @function
+ * @param {Object} value
+ * @returns {Object}
+ * @example
+ * // returns {c:0, m:0, y:0, k:1}
+ * rgb2hsl({r:0, g:0, b:0, a:1})
+ */
 function rgb2cmyk(value) {
     // achromatic
     if (value.r === value.g && value.g === value.b) {
@@ -153,6 +231,16 @@ function rgb2cmyk(value) {
         k:k
     };
 }
+
+/**
+ * Converts an CMYK color object to a RGB color object
+ * @function
+ * @param {Object} value
+ * @returns {Object}
+ * @example
+ * // returns {r:0, g:0, b:0, a:1}
+ * rgb2hsl({c:0, m:0, y:0, k:1})
+ */
 function cmyk2rgb(value) {
     return {
         r: 1 - Math.min(1, value.c * (1 - value.k) + value.k),
@@ -161,7 +249,17 @@ function cmyk2rgb(value) {
         a: 1
     };
 }
-// Color parser
+// Color parsers
+
+/**
+ * Normalizes the values in an array
+ * @function
+ * @param {Array} channels - An array of string values
+ * @returns {Array}
+ * @example
+ * // returns [1,1,1]
+ * parseChannelValues(['100%','255','255'])
+ */
 function parseChannelValues(channels) {
     for (var i=0; i<channels.length; i++) {
         if (channels[i].indexOf('%') !== -1) {
@@ -175,6 +273,16 @@ function parseChannelValues(channels) {
     }
     return channels;
 }
+
+/**
+ * Parses a HEX string into an RGBA object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { rgba: {r:1, g:1, b:1, a:1} }
+ * parseHexString('#fff')
+ */
 function parseHexString(value) {
     var retval;
     if (/^#([0-9a-f]{3}){1,2}$/i.test(value)) {
@@ -191,6 +299,16 @@ function parseHexString(value) {
     }
     return retval;
 }
+
+/**
+ * Parses a RGBA string into an RGBA object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { rgba: {r:1, g:1, b:1, a:1} }
+ * parseRgbaString('rgba(100%,255,255,1)')
+ */
 function parseRgbaString(value) {
     var parts, alpha;
     parts = value.match(/^rgba\((\d+%?),(\d+%?),(\d+%?),(\.\d+|\d+\.?\d*)\)$/);
@@ -211,6 +329,16 @@ function parseRgbaString(value) {
         };
     }
 }
+
+/**
+ * Parses a RGB string into an RGBA object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { rgba: {r:1, g:1, b:1, a:1} }
+ * parseRgbString('rgb(100%,255,255)')
+ */
 function parseRgbString(value) {
     var parts;
     parts = value.match(/^rgb\((\d+%?),(\d+%?),(\d+%?)\)$/);
@@ -227,6 +355,16 @@ function parseRgbString(value) {
         };
     }
 }
+
+/**
+ * Parses a HSLA string into an HSLA object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { hsla: {h:1, s:1, l:1, a:1} }
+ * parseHslaString('hsla(0,100%,100%,1)')
+ */
 function parseHslaString(value) {
     var parts, alpha, hue;
     parts = value.match(/^hsla\((-?\d+),(\d+%),(\d+%),(\.\d+|\d+\.?\d*)\)$/);
@@ -249,6 +387,16 @@ function parseHslaString(value) {
         };
     }
 }
+
+/**
+ * Parses a HSL string into an HSLA object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { hsla: {h:1, s:1, l:1, a:1} }
+ * parseHslString('hsl(0,100%,100%)')
+ */
 function parseHslString(value) {
     var parts, hue;
     parts = value.match(/^hsl\((-?\d+),(\d+%),(\d+%)\)$/);
@@ -267,6 +415,16 @@ function parseHslString(value) {
         };
     }
 }
+
+/**
+ * Parses a CMYK string into an CMYK object
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ * @example
+ * // returns { cmyk: {c:1, m:1, y:1, k:0} }
+ * parseCmykString('device-cmyk(1,1,1,0)')
+ */
 function parseCmykString(value) {
     var parts, i;
     parts = value.match(/^device-cmyk\((\.\d+|\d+\.?\d*),(\.\d+|\d+\.?\d*),(\.\d+|\d+\.?\d*),(\.\d+|\d+\.?\d*)\)$/);
@@ -288,6 +446,13 @@ function parseCmykString(value) {
         };
     }
 }
+
+/**
+ * Parses a supported string
+ * @function
+ * @param {string} value
+ * @returns {Object}
+ */
 function parseString(value) {
     var retval;
     value = value.replace(/\s+/g, '');
@@ -306,6 +471,13 @@ function parseString(value) {
     }
     return retval;
 }
+
+/**
+ * Parses a supported object
+ * @function
+ * @param {Object} value
+ * @returns {Object}
+ */
 function parseObject(value) {
     var alpha, retval;
     value = clone(value, parseFloat);
@@ -329,6 +501,13 @@ function parseObject(value) {
     }
     return retval;
 }
+
+/**
+ * Parses any supported value
+ * @function
+ * @param {*} value
+ * @returns {Object}
+ */
 function parse(value) {
     var retval;
     if (typeof value === 'string') {
@@ -344,38 +523,80 @@ function parse(value) {
     return retval;
 }
 // Prepare values for display in strings
-function round1decimal(i) {
-    return round(i * 100) / 100;
+
+/**
+ * Rounds a number to 2 decimal places
+ * @function
+ * @param {Number} num
+ * @returns {Number}
+ * @example
+ * // returns 1.11
+ * round2decimal(1.11111)
+ */
+function round2decimal(num) {
+    return round(num * 100) / 100;
 }
+
+/**
+ * Converts a normalized RGB object to an array that can be used
+ * to create a string representation of the color
+ * @function
+ * @param {Object} color
+ * @returns {Array}
+ * @example
+ * // returns [255,255,255,1.11]
+ * getRgbaStringValues({r:1, g:1, b:1, a:1.111})
+ */
 function getRgbaStringValues(color) {
     return [
         round(color.r * 255),
         round(color.g * 255),
         round(color.b * 255),
-        round1decimal(color.a)
+        round2decimal(color.a)
     ];
 }
+
+/**
+ * Converts a normalized HSLA object to an array that can be used
+ * to create a string representation of the color
+ * @function
+ * @param {Object} color
+ * @returns {Array}
+ * @example
+ * // returns [360,'100%','100%',1.11]
+ * getHslaStringValues({h:1, s:1, l:1, a:1.111})
+ */
 function getHslaStringValues(color) {
     return [
         round(color.h * 360),
         round(color.s * 100) + '%',
         round(color.l * 100) + '%',
-        round1decimal(color.a)
+        round2decimal(color.a)
     ];
 }
+
+/**
+ * Converts a normalized CMYK object to an array that can be used
+ * to create a string representation of the color
+ * @function
+ * @param {Object} color
+ * @returns {Array}
+ * @example
+ * // returns [1,1,1,1]
+ * getCmykStringValues({c:1, m:1, y:1, k:1})
+ */
 function getCmykStringValues(color) {
     return [
-        round1decimal(color.c),
-        round1decimal(color.m),
-        round1decimal(color.y),
-        round1decimal(color.k)
+        round2decimal(color.c),
+        round2decimal(color.m),
+        round2decimal(color.y),
+        round2decimal(color.k)
     ];
 }
 /**
- * COLOR MANAGEMENT
+ * Represents a Color
+ * @constructor
  */
-
-// Constructor
 function Color(value) {
     var self = this;
     // default to black
@@ -453,6 +674,7 @@ function Color(value) {
         }
         return self;
     };
+    // Alpha setter
     self.setAlpha = function (value) {
         value = parseFloat(value);
         if (! isNaN(value) && value >= 0 && value <= 1) {
@@ -461,6 +683,7 @@ function Color(value) {
         }
         return self;
     };
+    // Alpha getter
     self.getAlpha = function () {
         return currentColor.a;
     };
