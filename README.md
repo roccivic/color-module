@@ -2,6 +2,7 @@
 [![Coverage Status Badge](https://coveralls.io/repos/roccivic/color-module/badge.svg?branch=master)](https://coveralls.io/r/roccivic/color-module?branch=master)
 [![devDependency Status Badge](https://david-dm.org/roccivic/color-module/dev-status.svg)](https://david-dm.org/roccivic/color-module#info=devDependencies)
 [![Code Climate Badge](https://codeclimate.com/github/roccivic/color-module/badges/gpa.svg)](https://codeclimate.com/github/roccivic/color-module)
+[![Inline docs](http://inch-ci.org/github/roccivic/color-module.svg?branch=master)](http://inch-ci.org/github/roccivic/color-module)
 [![MIT License Badge](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/roccivic/color-module/blob/master/LICENCE.txt)
 
 # color-module
