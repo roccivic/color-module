@@ -28,6 +28,7 @@ node_modules
 
 test-results
 
+dist/color-module.js
 dist/color-module.temp.js
 
 sauce.json
