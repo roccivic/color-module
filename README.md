@@ -11,19 +11,16 @@ Color management module for JavaScript.
 * Can generate a contrasting color.
 * Can manipulate the alpha channel alone.
 
+# Installing
+### Via Bower
+```bower install color-module --save```
+
+### Via Git
+```git clone https://github.com/roccivic/color-module.git```
+
 # Building
 
-### Download and extract
-```
-wget https://github.com/roccivic/color-module/archive/master.zip
-unzip master.zip
-cd color-module-master
-```
-
 ### Install dependencies
-* nodejs
-
-then:
 ```
 npm install -g grunt-cli
 npm install
